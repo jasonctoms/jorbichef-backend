@@ -8,10 +8,10 @@ plugins {
     kotlin("jvm") version "1.5.0"
 }
 
-group = "com.jorbital"
+group = "com.jorbital.jorbichef"
 version = "0.0.1"
 application {
-    mainClass.set("com.jorbital.ApplicationKt")
+    mainClass.set("com.jorbital.jorbichef.ApplicationKt")
 }
 
 repositories {
