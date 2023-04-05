@@ -4,8 +4,8 @@ val logback_version: String by project
 val kgraphql_version: String by project
 
 plugins {
-    application
-    kotlin("jvm") version "1.5.0"
+    kotlin("jvm") version "1.8.20"
+    id("io.ktor.plugin") version "2.2.4"
 }
 
 group = "com.jorbital.jorbichef"

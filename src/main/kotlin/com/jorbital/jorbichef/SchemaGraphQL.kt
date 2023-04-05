@@ -7,7 +7,7 @@ import com.jorbital.jorbichef.models.IngredientType
 import com.jorbital.jorbichef.repository.IngredientsRepository
 import com.jorbital.jorbichef.repository.IngredientsRepositoryImpl
 
-fun SchemaBuilder.schemaValue() {
+fun SchemaBuilder.schema() {
     val repository: IngredientsRepository = IngredientsRepositoryImpl()
 
     query("ingredients") {
@@ -51,6 +51,5 @@ fun SchemaBuilder.schemaValue() {
     type<Ingredient> {
         description = "Ingredient object with attributes for name and type of ingredient"
     }
-
     enum<IngredientType>()
 }
