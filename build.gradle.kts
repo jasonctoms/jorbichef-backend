@@ -14,6 +14,12 @@ application {
     mainClass.set("com.jorbital.jorbichef.ApplicationKt")
 }
 
+kotlin {
+    jvmToolchain {
+        languageVersion.set(JavaLanguageVersion.of(11))
+    }
+}
+
 repositories {
     mavenCentral()
 }
