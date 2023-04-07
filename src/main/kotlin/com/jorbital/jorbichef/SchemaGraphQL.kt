@@ -67,11 +67,10 @@ fun SchemaBuilder.schema() {
 
     mutation("createIngredient") {
         description = "Create a new ingredient"
-        resolver { ingredientInput: IngredientInput ->
+        resolver { ingredient: IngredientInput ->
             try {
                 val id = java.util.UUID.randomUUID().toString()
-                val ingredient = Ingredient(id = id, name = ingredientInput.name, tags = ingredientInput.tags)
-                repository.createIngredient(ingredient)
+                //repository.createIngredient(ingredient.copy(id = id))
                 true
             } catch (e: Exception) {
                 false
@@ -81,10 +80,10 @@ fun SchemaBuilder.schema() {
 
     mutation("createRecipe") {
         description = "Create a new recipe"
-        resolver { recipe: Recipe ->
+        resolver { recipe: RecipeInput ->
             try {
                 val id = java.util.UUID.randomUUID().toString()
-                repository.createRecipe(recipe.copy(id = id))
+                //repository.createRecipe(recipe.copy(id = id))
                 true
             } catch (e: Exception) {
                 false
@@ -94,9 +93,19 @@ fun SchemaBuilder.schema() {
 
     mutation("updateWeeklyMenu") {
         description = "Update the weekly menu"
-        resolver { weeklyMenu: WeeklyMenu ->
+        resolver { id: String, weeklyMenu: WeeklyMenuInput ->
             try {
-                repository.updateWeeklyMenu(weeklyMenu)
+                val updatedMenu = WeeklyMenu(
+                    id = id,
+                    userId = "demo", // i think i hate graphql
+                    monday = weeklyMenu.monday,
+                    tuesday = weeklyMenu.tuesday,
+                    wednesday = weeklyMenu.wednesday,
+                    thursday = weeklyMenu.thursday,
+                    friday = weeklyMenu.friday,
+                    saturday = weeklyMenu.saturday,
+                    sunday = weeklyMenu.sunday)
+                repository.updateWeeklyMenu(updatedMenu)
                 true
             } catch (e: Exception) {
                 false
@@ -145,9 +154,6 @@ fun SchemaBuilder.schema() {
     }
     type<Ingredient> {
         description = "Ingredient object with attributes for id, name, tags, and optional resource id and user id"
-    }
-    inputType<IngredientInput> {
-        description = "The input of an ingredient without the identifier"
     }
     type<Recipe> {
         description = "Recipe object with attributes for id, name, ingredients, instructions, url, image url, and tags"

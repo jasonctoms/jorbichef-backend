@@ -16,3 +16,18 @@ data class RecipeIngredient(
     val amount: String,
     val ingredient: Ingredient
 )
+
+data class RecipeInput(
+    val userId: String,
+    val name: String,
+    val ingredients: List<RecipeIngredientInput>,
+    val instructions: String,
+    val url: String?,
+    val imageUrl: String?,
+    val tags: List<Tag>,
+)
+
+data class RecipeIngredientInput(
+    val amount: String,
+    val ingredient: Ingredient
+)

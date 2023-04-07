@@ -8,4 +8,4 @@ data class Ingredient(
     val tags: List<Tag>,
 )
 
-data class IngredientInput(val name: String, val tags: List<Tag>)
+data class IngredientInput(val name: String, val tags: List<TagInput>)

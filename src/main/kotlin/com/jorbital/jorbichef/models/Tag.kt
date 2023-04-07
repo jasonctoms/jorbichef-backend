@@ -6,3 +6,5 @@ data class Tag(
     val resourceId: String? = null,
     val userId: String? = null,
 )
+
+data class TagInput(val name: String)
